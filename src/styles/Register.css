@@ -1,61 +1,61 @@
 .register-container {
-    padding: 2.5rem;
-    border-radius: 0.35rem;
-    border: 1px solid #6d5c6a;
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 1rem;
-    align-content: center;
-    max-width: 500px;
-    margin-top: 10rem;
-    margin-left: 25rem;
-   }
-   
-   .flex-container {
-     margin-top: -30px;
-     display: flex;
-     justify-content: space-between;
-   }
-    
-   .login-instead {
-     display: inline;
-     background: none;
-     border: none;
-     padding: 0;
-     margin: 0;
-     font-size: 0.75rem;
-     text-decoration: none;
-     color: #6d5c6a;
-   }
-   
-   .login-instead:hover {
-     text-decoration: underline;
-   }
-   
-   .form-styles {
-     margin-left: 6rem;
-   }
-   
-   .input-styles {
-     margin-bottom: 10px;
-   }
-   
-   .register-button {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     background-color: #6d5c6a;
-     color: #fff;
-     font-size: medium;
-     margin-top: 1rem;
-     margin-left: 6.5rem;
-     padding-top: 0.25rem;
-     padding-bottom: 0.25rem;
-     padding-left: 0.5rem;
-     padding-right: 0.5rem;
-     border-radius: 0.15rem;
-   }
-   .register-button:hover {
-     background-color: #ceb0b0;
-   }
-   
+  padding: 2.5vw;
+  border-radius: 1vw;
+  border: 1px solid #6d5c6a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80vw;
+  margin: 25vh auto 15rem;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.login-instead {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1vw;
+  text-decoration: none;
+  color: #6d5c6a;
+}
+
+.login-instead:hover {
+  text-decoration: underline;
+  transition: underline 0.3s ease;
+}
+
+.form-styles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1vw;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.input-styles {
+  margin-bottom: 1vw;
+}
+
+.register-button {
+  background-color: #6d5c6a;
+  color: #fff;
+  font-size: 1vw;
+  padding: 0.5vw 1.5vw;
+  max-width: 6rem;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.register-button:hover {
+  background-color: #ceb0b0;
+}

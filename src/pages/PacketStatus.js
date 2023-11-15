@@ -1,5 +1,7 @@
+// TODO!
+
 import React from "react";
-import "../PacketStatus.css";
+import "../styles/PacketStatus.css";
 
 function PackageCard({ title, description }) {
   return (
