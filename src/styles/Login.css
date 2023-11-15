@@ -1,0 +1,61 @@
+.login-container {
+ padding: 2.5rem;
+ border-radius: 0.35rem;
+ border: 1px solid #6d5c6a;
+ display: grid;
+ grid-template-columns: repeat(1, minmax(0, 1fr));
+ gap: 1rem;
+ align-content: center;
+ max-width: 300px;
+ margin-top: 10rem;
+ margin-left: 30rem;
+}
+
+.flex-container {
+  margin-top: -30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.create-account {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: #6d5c6a;
+}
+
+.create-account:hover {
+  text-decoration: underline;
+}
+
+.form-styles {
+  padding-left: 20px;
+}
+
+.input-styles {
+  margin-bottom: 10px;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6d5c6a;
+  color: #fff;
+  font-size: medium;
+  margin-top: 1rem;
+  margin-left: 6.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.15rem;
+}
+.login-button:hover {
+  background-color: #ceb0b0;
+}
