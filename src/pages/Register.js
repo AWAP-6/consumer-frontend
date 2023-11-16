@@ -7,7 +7,7 @@ const Register = () => (
   <div>
     <Header />
     <div className="register-container">
-      <div className="flex-container">
+      <div className="top-container">
         <h2 className="font-bold">Register new account:</h2>
         <Link to="/">
           <button className="login-instead">Login instead?</button>

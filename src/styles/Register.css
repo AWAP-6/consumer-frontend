@@ -1,15 +1,16 @@
 .register-container {
+  background-color: whitesmoke;
   padding: 2.5vw;
   border-radius: 1vw;
-  border: 1px solid #6d5c6a;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 80vw;
+  max-width: 30vw;
   margin: 25vh auto 15rem;
 }
 
-.flex-container {
+.top-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -24,6 +25,7 @@
   font-size: 1vw;
   text-decoration: none;
   color: #6d5c6a;
+  cursor: pointer;
 }
 
 .login-instead:hover {
@@ -53,7 +55,8 @@
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .register-button:hover {

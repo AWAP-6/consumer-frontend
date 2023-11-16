@@ -3,15 +3,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Packages from "./pages/PacketStatus";
-import "./App.css";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/packetstatus" element={<Packages />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/packetstatus" element={<Packages />} />
       </Routes>
     </Router>
   );

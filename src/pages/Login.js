@@ -7,7 +7,7 @@ const Login = () => (
   <div>
     <Header />
     <div className="login-container">
-      <div className="flex-container">
+      <div className="top-container">
         <h2 className="font-bold">Login:</h2>
         <Link to="/register">
           <button className="create-account">Create account?</button>
