@@ -1,14 +1,22 @@
 import React from "react";
 import "../styles/PacketStatus.css";
 import Header from "./Header.js";
+import { Link } from "react-router-dom";
+import packageData from "./PacketData";
 
-function PackageCard({ title, description }) {
+function PackageCard({ title, description, location, openCode }) {
   return (
     <div>
       <Header />
       <div className="package-card">
-        <h2>{title}</h2>
-        <p>{description}</p>
+        <span className="packet-info">
+          <div>
+            <h2>{title}</h2>
+            <p>{description}</p>
+          </div>
+          <h2>Location: {location}</h2>
+          <h2>Lockercode: {openCode}</h2>
+        </span>
       </div>
     </div>
   );
@@ -17,37 +25,18 @@ function PackageCard({ title, description }) {
 export default function Packages() {
   return (
     <main className="flex-container">
-      <h2>Packet Status and History:</h2>
-      <div className="text-center">
-        <PackageCard
-          title="PackageNum 1"
-          description="This is the status text for the first package"
-        />
+      <div className="top-container">
+        <h2 className="packet-status">Packet Status and History:</h2>
+        <Link to="/newpacket">
+          <button className="send-new-button">Send new packet?</button>
+        </Link>
       </div>
-      <div className="text-center">
-        <PackageCard
-          title="PackageNum 2"
-          description="This is the status text for the second package"
-        />
-      </div>
-      <div className="text-center">
-        <PackageCard
-          title="PackageNum 3"
-          description="This is the status text for the third package"
-        />
-      </div>
-      <div className="text-center">
-        <PackageCard
-          title="PackageNum 4"
-          description="This is the status text for the fourth package"
-        />
-      </div>
-      <div className="text-center">
-        <PackageCard
-          title="PackageNum 5"
-          description="This is the status text for the fifth package"
-        />
-      </div>
+
+      {packageData.map((packageItem) => (
+        <div className="packet-text" key={packageItem.title}>
+          <PackageCard {...packageItem} />
+        </div>
+      ))}
     </main>
   );
 }

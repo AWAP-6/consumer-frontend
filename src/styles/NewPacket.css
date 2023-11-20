@@ -1,0 +1,74 @@
+.newpacket-container {
+  background-color: whitesmoke;
+  padding: 2.5vw;
+  border-radius: 1vw;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 30vw;
+  margin: 25vh auto 15rem;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.back-to-status {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1vw;
+  text-decoration: none;
+  color: #6d5c6a;
+  cursor: pointer;
+}
+
+.back-to-status:hover {
+  text-decoration: underline;
+  transition: underline 0.3s ease;
+}
+
+.font-bold {
+  color: #33334d;
+}
+
+.form-styles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1vw;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.form-styles h2 {
+  padding: 0;
+  margin: 0;
+  color: #33334d;
+}
+
+.input-styles {
+  margin-bottom: 1vw;
+}
+
+.enter-button {
+  background-color: #6d5c6a;
+  color: #fff;
+  font-size: 1vw;
+  padding: 0.5vw 1.5vw;
+  max-width: 6rem;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.enter-button:hover {
+  background-color: #ceb0b0;
+}
