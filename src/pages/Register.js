@@ -38,7 +38,7 @@ const Register = () => {
       alert(`Error: ${error.message}`);
     }
   };
-
+  
   return (
     <div>
       <Header />
