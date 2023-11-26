@@ -7,7 +7,7 @@ import { registerUser } from '../fetch/reg&loginFetch';
 const Register = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
-  const [lockerLocationId, setLocation] = useState('location1');
+  const [lockerLocationId, setLocation] = useState(1);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
@@ -25,16 +25,16 @@ const Register = () => {
       lockerLocationId,
       password
     };
-    console.log(userData)
+    console.log(userData);
     try {
       const response = await registerUser(userData);
-      if (response.success) {
-        alert(response.message);
+      if (response.status === 200) {
+        alert(response.data.message);
         navigate('/');
       } else {
-        alert(response.message || 'Registration error.');
+        alert(response.data.message || 'Registration error.');
       }
-      } catch (error) {
+    } catch (error) {
       alert(`Error: ${error.message}`);
     }
   };
@@ -57,12 +57,12 @@ const Register = () => {
           </div>
           <div className="input-styles">
             <label>Location: </label>
-            <select value={lockerLocationId} name='lockerLocationId' onChange={(e) => setLocation(e.target.value)} required>
-              <option value="1">Location 1</option>
-              <option value="2">Location 2</option>
-              <option value="3">Location 3</option>
-              <option value="4">Location 4</option>
-              <option value="5">Location 5</option>
+            <select value={lockerLocationId} name='lockerLocationId' onChange={(e) => setLocation(Number(e.target.value))} required>
+            <option value={1}>Location 1</option>
+            <option value={2}>Location 2</option>
+            <option value={3}>Location 3</option>
+            <option value={4}>Location 4</option>
+            <option value={5}>Location 5</option>
             </select>
           </div>
           <div className="input-styles">
