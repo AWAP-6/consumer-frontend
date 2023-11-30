@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/Register.css";
 import Header from "./Header.js";
-import { registerUser } from '../fetch/reg&loginFetch';
+import { registerUser } from '../fetch/registrationFetch.js';
 
 const Register = () => {
   const [email, setEmail] = useState('');

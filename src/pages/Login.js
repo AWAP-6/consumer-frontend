@@ -1,32 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import "../styles/Login.css";
 import Header from "./Header.js";
+import { loginUser } from "../fetch/loginFetch.js";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(null);
+  const [loginError, setLoginError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleLogin = async (event) => {
+    event.preventDefault();
 
-    // console.logging for now as backend is not connected :)
-    console.log({
+    const loginData = {
       username,
-      password,
-    });
-
-    // TODO: create backend validation functionality
-    const isLoginSuccessful = true;
-
-    if (isLoginSuccessful) {
-      setLoginError(null);
-
-      // TODO: Redirect to users own pakcetstatus page when successful
-      console.log("Login successful! Redirecting...");
-    } else {
-      setLoginError("Invalid username or password");
+      password
+    };
+    console.log('loginData:', loginData)
+    
+    try {
+      const data = await loginUser(loginData);
+      if (data.success) {
+        navigate('/packetstatus');
+      } else {
+        setLoginError(data.message);
+      }
+    } catch (error) {
+      setLoginError(`Login error: ${error.message}`);
     }
   };
 
@@ -38,33 +40,19 @@ const Login = () => {
           <h2 className="font-bold">Login:</h2>
           <Link to="/register">
             <button className="create-account">Create account?</button>
-          </Link>
+        </Link>
         </div>
-        <form className="form-styles" onSubmit={handleSubmit}>
+        <form className="form-styles" onSubmit={handleLogin}>
           <div className="input-styles">
             <label>Username: </label>
-            <input
-              type="text"
-              className="input-field"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <input type="text" className="input-field" value={username} onChange={(e) => setUsername(e.target.value)} required/>
           </div>
           <div className="input-styles">
             <label>Password: </label>
-            <input
-              type="password"
-              className="input-field"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <input type="password" className="input-field" value={password} onChange={(e) => setPassword(e.target.value)} required/>
           </div>
           {loginError && <p className="error-message">{loginError}</p>}
-          <Link to="/packetstatus">
-            <button type="submit" className="log-in-button">
-              Login
-            </button>
-          </Link>
+          <button type="submit" className="log-in-button">Login</button>
         </form>
       </div>
     </div>
