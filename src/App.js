@@ -4,15 +4,17 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Packages from "./pages/PacketStatus";
 import SendPacket from "./pages/NewPacket";
+import ActivationPage from "./pages/Activation";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/packetstatus" element={<Packages />} />
         <Route path="/newpacket" element={<SendPacket />} />
+        <Route path="/activate" element={<ActivationPage />} />
       </Routes>
     </Router>
   );

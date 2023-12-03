@@ -30,7 +30,7 @@ const Register = () => {
       const response = await registerUser(userData);
       if (response.status === 200) {
         alert(response.data.message);
-        navigate('/');
+        navigate('/login');
       } else {
         alert(response.data.message || 'Registration error.');
       }
