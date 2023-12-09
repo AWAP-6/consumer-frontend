@@ -11,8 +11,8 @@ const SendPacket = () => {
   const [senderName, setSenderName] = useState("");
   const [senderEmail, setSenderEmail] = useState("");
   const [senderAddress, setSenderAddress] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState(1);
-  const [yourLocation, setYourLocation] = useState(1);
+  const [toLocation, setToLocation] = useState(1);
+  const [fromLocation, setFromLocation] = useState(1);
 
   const navigate = useNavigate();
 
@@ -26,8 +26,8 @@ const SendPacket = () => {
       senderName,
       senderEmail,
       senderAddress,
-      to_location: selectedLocation,
-      from_location: yourLocation,
+      toLocation,
+      fromLocation,
     };
 
     console.log(packetData);
@@ -35,10 +35,16 @@ const SendPacket = () => {
     try {
       const response = await createParcel(packetData);
       if (response.status === 200) {
-        alert(response.data.message);
+        if (response.data && response.data.message) {
+          alert(response.data.message);
+        }
         navigate("/packetstatus");
       } else {
-        alert(response.data.message || "Packet creation error.");
+        if (response.data && response.data.message) {
+          alert(response.data.message);
+        } else {
+          alert("Packet creation error.");
+        }
       }
     } catch (error) {
       alert(`Error: ${error.message}`);
@@ -109,9 +115,9 @@ const SendPacket = () => {
           <h2>Choose Delivery Location:</h2>
           <div className="input-styles">
             <select
-              value={selectedLocation}
-              name="selectedLocation"
-              onChange={(e) => setSelectedLocation(Number(e.target.value))}
+              value={toLocation}
+              name="toLocation"
+              onChange={(e) => setFromLocation(Number(e.target.value))}
               required
             >
               <option value={1}>Location 1</option>
@@ -157,9 +163,9 @@ const SendPacket = () => {
           <h2>Choose Your Location:</h2>
           <div className="input-styles">
             <select
-              value={yourLocation}
-              name="yourLocation"
-              onChange={(e) => setYourLocation(Number(e.target.value))}
+              value={fromLocation}
+              name="fromLocation"
+              onChange={(e) => setToLocation(Number(e.target.value))}
               required
             >
               <option value={1}>Location 1</option>
