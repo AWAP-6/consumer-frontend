@@ -3,8 +3,10 @@ import { Link, Navigate } from "react-router-dom";
 import "../styles/Login.css";
 import Header from "./Header.js";
 import { loginUser } from "../fetch/loginFetch.js";
+import { useAuthentication } from "./AuthContext";
 
 const Login = () => {
+  const { login } = useAuthentication();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -17,17 +19,14 @@ const Login = () => {
       username,
       password,
     };
-    console.log("loginData:", loginData);
 
     try {
       const data = await loginUser(loginData);
-      console.log("Login API Response:", data);
+      console.log("Full API Response:", data);
 
       if (data.success) {
         if (data.user) {
-          localStorage.setItem("authToken", data.authToken);
-          localStorage.setItem("userEmail", data.user.email);
-          localStorage.setItem("userData", JSON.stringify(data.user));
+          login(data.user);
           setRedirectToPacketStatus(true);
         } else {
           console.error("User is null in the API response");

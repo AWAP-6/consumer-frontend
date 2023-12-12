@@ -3,8 +3,10 @@ import axios from "axios";
 import "../styles/PacketStatus.css";
 import Header from "./Header.js";
 import { Link } from "react-router-dom";
+import { useAuthentication } from "./AuthContext";
 
 export default function Parcels() {
+  const { user } = useAuthentication();
   const [userParcels, setUserParcels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,23 +14,14 @@ export default function Parcels() {
   useEffect(() => {
     const fetchUserParcels = async () => {
       try {
-        debugger;
-        const authToken = localStorage.getItem("authToken");
-        const userEmail = localStorage.getItem("userEmail");
-
-        if (authToken && userEmail) {
+        if (user) {
           const response = await axios.get(
-            `/parcels?sender_email=${userEmail}`,
-            {
-              headers: {
-                Authorization: `Bearer ${authToken}`,
-              },
-            }
+            `http://localhost:8080/parcels?sender_email=${user.email}`
           );
 
           setUserParcels(response.data);
         } else {
-          setError("User email not found in localStorage");
+          setError("User not found in context");
         }
       } catch (error) {
         setError(`Error fetching parcels for user: ${error.message}`);
@@ -38,8 +31,8 @@ export default function Parcels() {
     };
 
     fetchUserParcels();
-  }, []);
-
+  }, [user]);
+  /*
   const transformStatus = (lockerStatus) => {
     if (lockerStatus === "ready for customer pickup") {
       return "ready for pickup";
@@ -49,7 +42,6 @@ export default function Parcels() {
       return "on delivery to warehouse";
     }
   };
-
   const getStatusColor = (status) => {
     switch (status) {
       case "ready for pickup":
@@ -61,6 +53,7 @@ export default function Parcels() {
         return "transparent-ball";
     }
   };
+  */
 
   if (loading) {
     return <div>Loading...</div>;
@@ -68,6 +61,10 @@ export default function Parcels() {
 
   if (error) {
     return <div>Error: {error}</div>;
+  }
+
+  function handleDetailsClick(parcel) {
+    console.log("View details clicked for parcel:", parcel);
   }
 
   return (
@@ -84,7 +81,8 @@ export default function Parcels() {
           <div className="package-card" key={parcel.parcelId}>
             <h2 className="packet-text">{`Parcel ID: ${parcel.parcelId}`}</h2>
             <div className="packet-info">
-              <p>{`Location: ${parcel.toLocation}`}</p>
+              <p>{`Location: ${parcel.fromLocation}`}</p>
+              {/*
               <div className="status">
                 <div
                   className={`status-indicator ${getStatusColor(
@@ -92,6 +90,7 @@ export default function Parcels() {
                   )}`}
                 />
               </div>
+                  */}
             </div>
             <button
               className="details-button"
@@ -104,8 +103,4 @@ export default function Parcels() {
       </main>
     </div>
   );
-}
-
-function handleDetailsClick(parcel) {
-  console.log("View details clicked for parcel:", parcel);
 }

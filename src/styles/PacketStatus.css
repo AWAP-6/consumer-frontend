@@ -17,32 +17,48 @@
 
 .package-card {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 1vw;
   border: 1px solid #ceb0b0;
+  padding-left: 5vw;
+  padding-right: 5vw;
   max-width: 65vw;
-  margin: 1vh auto;
+  margin: 2vh auto;
 }
 
-.packet-text h2 {
+.packet-text {
   padding: 0;
   margin: 1vh;
   font-weight: 500;
+  padding-right: 2vw;
   color: #33334d;
-}
-
-.packet-text p {
-  padding: 0;
-  margin: 1vh;
-  color: #6d5c6a;
 }
 
 .packet-info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-right: 2vw;
+  margin: 1vh;
+  color: #6d5c6a;
+}
+
+.details-button {
+  background-color: #6d5c6a;
+  color: #fff;
+  font-size: 0.9vw;
+  padding: 0.5vw 1.2vw;
+  max-width: 12rem;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background-color: #ceb0b0;
 }
 
 .send-new-button {
