@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post('http://localhost:8080/registration', userData, {
+    const response = await axios.post('https://awap-6server.onrender.com/registration', userData, {
       headers: {
         'Content-Type': 'application/json',
       }

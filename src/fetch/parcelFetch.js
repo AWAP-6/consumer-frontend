@@ -3,7 +3,7 @@ import axios from "axios";
 export const createParcel = async (packetData) => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/parcels/add",
+      "https://awap-6server.onrender.com/parcels/add",
       packetData,
       {
         headers: {

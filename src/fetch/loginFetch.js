@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const loginUser = async (loginData) => {
   try {
-    const response = await axios.post('http://localhost:8080/login', loginData, {
+    const response = await axios.post('https://awap-6server.onrender.com/login', loginData, {
       headers: {
         'Content-Type': 'application/json',
       },
