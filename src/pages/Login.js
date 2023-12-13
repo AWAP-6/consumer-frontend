@@ -26,6 +26,9 @@ const Login = () => {
 
       if (data.success) {
         if (data.user) {
+          localStorage.setItem("authToken", data.authToken);
+          localStorage.setItem("userEmail", data.user.email);
+          localStorage.setItem("userData", JSON.stringify(data.user));
           login (JSON.stringify(data.user));
           setRedirectToPacketStatus(true);
         } else {
