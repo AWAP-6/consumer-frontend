@@ -16,7 +16,7 @@ export default function Parcels() {
       try {
         if (user) {
           const response = await axios.get(
-            `http://localhost:8080/parcels?sender_email=${user.email}`
+            `awap-6server.onrender.com/parcels/get?sender_email=${user.email}`
           );
 
           setUserParcels(response.data);
