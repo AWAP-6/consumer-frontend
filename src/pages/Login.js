@@ -26,7 +26,7 @@ const Login = () => {
 
       if (data.success) {
         if (data.user) {
-          login(data.user);
+          login (JSON.stringify(data.user));
           setRedirectToPacketStatus(true);
         } else {
           console.error("User is null in the API response");
