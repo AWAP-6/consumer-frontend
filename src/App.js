@@ -18,7 +18,9 @@ function App() {
           <Route path="/newpacket" element={<SendPacket />} />
         </Routes>
       </AuthenticationProvider>
-      <Route path="/activate" element={<ActivationPage />} />
+      <Routes>
+        <Route path="/activate" element={<ActivationPage />} />
+      </Routes>
     </Router>
   );
 }
