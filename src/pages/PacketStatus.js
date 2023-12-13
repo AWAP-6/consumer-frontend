@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Modal from "./Modal.js";
+import "../styles/Modal.css";
 import "../styles/PacketStatus.css";
 import Header from "./Header.js";
 import { Link } from "react-router-dom";
@@ -10,62 +12,54 @@ export default function Parcels() {
   const [userParcels, setUserParcels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedParcel, setSelectedParcel] = useState(null);
 
   useEffect(() => {
     const fetchUserParcels = async () => {
       try {
+        console.log("Fetching user parcels...");
         if (user) {
+          console.log("User found in context:", user);
           const response = await axios.get(
             `awap-6server.onrender.com/parcels/get?sender_email=${user.email}`
           );
 
+          console.log("Received response for user parcels:", response.data);
           setUserParcels(response.data);
         } else {
+          console.error("User not found in context");
           setError("User not found in context");
         }
       } catch (error) {
+        console.error("Error fetching parcels for user:", error.message);
         setError(`Error fetching parcels for user: ${error.message}`);
       } finally {
+        console.log("Setting loading to false");
         setLoading(false);
       }
     };
 
     fetchUserParcels();
   }, [user]);
-  /*
-  const transformStatus = (lockerStatus) => {
-    if (lockerStatus === "ready for customer pickup") {
-      return "ready for pickup";
-    } else if (lockerStatus === "reserved by driver") {
-      return "on delivery to pickup location";
-    } else if (lockerStatus === "reserved by customer") {
-      return "on delivery to warehouse";
-    }
-  };
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "ready for pickup":
-        return "green-ball";
-      case "on delivery to pickup location":
-      case "on delivery to warehouse":
-        return "yellow-ball";
-      default:
-        return "transparent-ball";
-    }
-  };
-  */
 
   if (loading) {
+    console.log("Loading...");
     return <div>Loading...</div>;
   }
 
   if (error) {
+    console.error("Error:", error);
     return <div>Error: {error}</div>;
   }
 
   function handleDetailsClick(parcel) {
     console.log("View details clicked for parcel:", parcel);
+    setSelectedParcel(parcel);
   }
+
+  const closeModal = () => {
+    setSelectedParcel(null);
+  };
 
   return (
     <div>
@@ -82,15 +76,6 @@ export default function Parcels() {
             <h2 className="packet-text">{`Parcel ID: ${parcel.parcelId}`}</h2>
             <div className="packet-info">
               <p>{`Location: ${parcel.fromLocation}`}</p>
-              {/*
-              <div className="status">
-                <div
-                  className={`status-indicator ${getStatusColor(
-                    transformStatus(parcel.locker.status)
-                  )}`}
-                />
-              </div>
-                  */}
             </div>
             <button
               className="details-button"
@@ -100,6 +85,9 @@ export default function Parcels() {
             </button>
           </div>
         ))}
+        {selectedParcel && (
+          <Modal parcel={selectedParcel} closeModal={closeModal} />
+        )}
       </main>
     </div>
   );

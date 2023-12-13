@@ -43,7 +43,6 @@ const SendPacket = () => {
         if (response.data && response.data.message) {
           alert(response.data.message);
         } else {
-          alert("Packet creation error.");
         }
       }
     } catch (error) {
